@@ -10,6 +10,8 @@ def lambda_handler(event, context):
     reservations = ec.describe_instances(
         Filters=[
             {'Name': 'tag-key', 'Values': ['backup', 'Backup']},
+            # Uncomment this line if need to take snaphsot of running instances only
+            # {'Name': 'instance-state-name', 'Values': ['running']},
         ]
     ).get(
         'Reservations', []
